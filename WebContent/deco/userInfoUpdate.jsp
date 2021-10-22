@@ -5,22 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>deco :: 회원정보 수정</title>
+<title>deco :: 회원정보 </title>
 <!-- 스타일 참고  -->
 <link rel="stylesheet" href="">
 </head>
 <body>
-	<!--  
-<c:if test="${alert!=null }">
-	<script type="text/javascript">
+
+	<c:if test="${alert!=null }">
+		<script type="text/javascript">
+		
 		alert('회원 정보가 수정되었습니다.');
 	</script>
-</c:if>
--->
+	</c:if>
+
 	<div style="width: 70%; margin: auto;">
 		<h3>Deco :: 회원 수정</h3>
 		<!-- 이메일 , 지역 -->
-		<form action="UserUpdateAction.deco" name="frmReg" method="post"
+		<form action="UserInfoModifyAction.deco" name="frmReg" method="post"
 			onsubmit="return validCheck()">
 			<input type="hidden" name="idx" value="${dto.idx }">
 			<!--브라우저에 출력은 안되고 파라미터로 필요한값은 type을 hidden으로 한다. -->
@@ -29,7 +30,7 @@
 					<td><label>닉네임</label></td>
 
 					<td><input type="text" name="nickname" placeholder=""
-						value="${dto.nickname }"></td>
+						value="${dto.nickname }" readonly></td>
 					<!-- 닉네임은 변경할수 없고 읽기만 -->
 				</tr>
 				<tr>
@@ -46,7 +47,7 @@
 				</tr>
 				<tr>
 					<td><label>전화번호</label></td>
-					<td><input type="text" name="phone" placeholder="전화번호을 입력하세요"
+					<td><input type="text" name="phone"  minlength="10" maxlength="11" placeholder="전화번호을 입력하세요"
 						value="${dto.phone }"></td>
 				</tr>
 				<!-- value는 기본값. type="number" 일 때는 min,max 속성 설정 가능.-->
@@ -63,7 +64,7 @@
 							<option value="서울 관악구">서울 관악구</option>
 							<option value="경기도 성남시">경기도 성남시</option>
 							<option value="경기도 부천시">경기도 부천시</option>
-					</select> <input placeholder="상세 주소" value="${dto.addr }"> <!-- <span id="addr_id"><input type="text" name="addr_etc" disabled="disabled" 
+					</select> <input placeholder="상세 주소" value="${user.addr }"> <!-- <span id="addr_id"><input type="text" name="addr_etc" disabled="disabled" 
 							placeholder="기타 지역을 입력하세요." >
 					</span> --></td>
 				</tr>
@@ -71,11 +72,22 @@
 				<td><input type="radio" value="${dto.gender }" name="gender"
 					checked id="male"> <label for="mals">남</label> <input
 					type="radio" value="${dto.gender }" name="gender" id="female">
-					<label for="female">여</label></td>
+					<label for="female">여</label>
+					</td>
+				<tr>
+               <td><label>나이</label></td>
+               <td><input type="number" name="age" min="10" max="99"
+                  value="${user.age }"></td>
+               <!-- value는 기본값. type="number" 일 때는 min,max 속성 설정 가능.-->
+             </tr>	
+
+
+
 
 				<tr>
-					<td colspan="2" style="text-align: center"><input
-						type="submit" value="수정"> <!-- 취소 버튼 누르면 마이페이지 홈으로  --></td>
+					<td colspan="2" style="text-align: center">
+					<input type ="submit" value="수정"> <!-- 취소 버튼 누르면 마이페이지 홈으로  -->
+					</td>
 				</tr>
 			</table>
 		</form>

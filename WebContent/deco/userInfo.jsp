@@ -57,7 +57,7 @@
 			<!-- 뷰파일에서는 대소문자 상관없다. -->
 				<td colspan="2" style="text-align: center">
 				<input type="button" value="수정하기" onclick="location.href='userInfoUpdate.deco'">
-				<input type="button" value="탈퇴하기" onclick="location.href='userInfodelete.deco'">
+				<!--  <input type="button" value="탈퇴하기" onclick="location.href='userInfodelete.deco'"> -->
 			</tr>
 		</table>
 		</form>

@@ -22,6 +22,7 @@ import com.deco.controller.action.MemberAction;
 import com.deco.controller.action.ModifyAction;
 import com.deco.controller.action.ReviewListAction;
 import com.deco.controller.action.UserInfoAction;
+import com.deco.controller.action.UserInfoModifyAction;
 import com.deco.controller.action.UserInfoUpdateAction;
 
 @WebServlet("*.deco")
@@ -95,10 +96,12 @@ public class FrontController extends HttpServlet {
 		} else if (spath.equals("/userInfoUpdate.deco")) {
 			Action action = new UserInfoUpdateAction();
 			forward = action.execute(request, response);
-		} //else if (spath.equals("/UserpdateAction.deco")) {
-			//Action action = new UserpdateAction();
-			//forward = action.execute(request, response);
-		
+		} else if (spath.equals("/MypageModifyAction.deco")) {
+			forward = new ActionForward(false, "deco/userInfoUpdate.jsp");
+		}else if(spath.equals("/UserInfoModifyAction.deco")) {
+	         Action action = new UserInfoModifyAction();
+	         forward = action.execute(request, response);
+	      }
 		// �씠 �떆�젏�뿉�꽌 forward �뿉 isREdirct �� url 媛믪씠 ���옣�릺�뼱�엳�쑝硫� OK! 
 		if (!forward.isRedirect()) {
 			RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());

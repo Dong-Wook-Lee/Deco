@@ -1,5 +1,5 @@
 package com.deco.controller.action;
 
-public class MypageModifyAction {
+public class UserIntoReviewAction {
 
 }
