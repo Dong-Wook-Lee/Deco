@@ -19,7 +19,7 @@
 		<!-- 로그인된 상태 -->
 		<br>${user.name }(${user.email })  님 반갑습니다. <br>
 		<a href="logout.deco" class="menu">로그아웃</a>
-		<a href="" >마이페이지</a>
+		<a href="mypage.deco" >마이페이지</a>
 		
 	</c:if>
     	</li>

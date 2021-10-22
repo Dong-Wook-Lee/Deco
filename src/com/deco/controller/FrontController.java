@@ -21,86 +21,91 @@ import com.deco.controller.action.LogoutAction;
 import com.deco.controller.action.MemberAction;
 import com.deco.controller.action.ModifyAction;
 import com.deco.controller.action.ReviewListAction;
+import com.deco.controller.action.UserInfoAction;
+import com.deco.controller.action.UserInfoUpdateAction;
 
 @WebServlet("*.deco")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public FrontController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FrontController() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
 	@Override
-		protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		ActionForward forward = null;
 //		ActionForward forward = new ActionForward();
-		
+
 		String spath = request.getServletPath();
 		System.out.println(spath);
 //		forward.setRedirect(false);
 //		forward.setUrl("./");
-		String url="./";
-		
-		if(spath.equals("/list.deco")) {
+		String url = "./";
+
+		if (spath.equals("/list.deco")) {
 			Action action = new ListAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/loginAction.deco")) {
+		} else if (spath.equals("/loginAction.deco")) {
 			Action action = new LoginAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/logout.deco")) {
+		} else if (spath.equals("/logout.deco")) {
 			Action action = new LogoutAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/cafe.deco")) {
+		} else if (spath.equals("/cafe.deco")) {
 			Action action = new CafeAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/member.deco")) {
+		} else if (spath.equals("/member.deco")) {
 			forward = new ActionForward(false, "deco/memberView.jsp");
-		}else if(spath.equals("/memberAction.deco")) {
+		} else if (spath.equals("/memberAction.deco")) {
 			Action action = new MemberAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/dibsList.deco")) {
+		} else if (spath.equals("/dibsList.deco")) {
 			Action action = new DibsListAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/cafeUpdate.deco")) {
+		} else if (spath.equals("/cafeUpdate.deco")) {
 			Action action = new CafeUpdateAction();
 			forward = action.execute(request, response);
-		}else if(spath.contentEquals("/edit.deco")){
+		} else if (spath.contentEquals("/edit.deco")) {
 			Action action = new ModifyAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/cafeInsert.deco")) {
-			forward = new ActionForward(false,"deco/cafeInsert.jsp");
-		}else if(spath.equals("/cafeInsertAction.deco")) {
+		} else if (spath.equals("/cafeInsert.deco")) {
+			forward = new ActionForward(false, "deco/cafeInsert.jsp");
+		} else if (spath.equals("/cafeInsertAction.deco")) {
 			Action action = new CafeInsertAction();
 			forward = action.execute(request, response);
-		}else if(spath.equals("/reviewList.deco")) {
+		} else if (spath.equals("/reviewList.deco")) {
 			Action action = new ReviewListAction();
 			forward = action.execute(request, response);
+		} else if (spath.equals("/mypage.deco")) {
+			forward = new ActionForward(false, "deco/mypage.jsp");
+		} else if (spath.equals("/userInfo.deco")) {
+			Action action = new UserInfoAction();
+			forward = action.execute(request, response);
+		} else if (spath.equals("/userInfoUpdate.deco")) {
+			Action action = new UserInfoUpdateAction();
+			forward = action.execute(request, response);
+		} //else if (spath.equals("/UserpdateAction.deco")) {
+			//Action action = new UserpdateAction();
+			//forward = action.execute(request, response);
+		
+		// �씠 �떆�젏�뿉�꽌 forward �뿉 isREdirct �� url 媛믪씠 ���옣�릺�뼱�엳�쑝硫� OK! 
+		if (!forward.isRedirect()) {
+			RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());
+			rd.forward(request, response);
+		} else {
+			response.sendRedirect(forward.getUrl());
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 이 시점에서 forward 에 isREdirct 와 url 값이 저장되어있으면 OK!
-				if(!forward.isRedirect()) {
-					RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());
-					rd.forward(request, response);
-				}else {
-					response.sendRedirect(forward.getUrl());
-				} 
-		
-		}
+
+	}
 }
