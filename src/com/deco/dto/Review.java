@@ -15,4 +15,8 @@ public class Review {
 	private String content;
 	private String category;
 	private String imgfile;
+	private int refidx;
+	private int fidx;
+	private int sidx;
+	private int eidx;
 }

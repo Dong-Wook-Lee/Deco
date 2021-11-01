@@ -1,21 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>deco ::¸¶ÀÌÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>::deco::ë§ˆì´í˜ì´ì§€</title>
+<style>
+.input{
+text-align: left;
+text-align: center;
+text-align: right;
+text-align: justify;
+}
+</style>
+<link rel="stylesheet" href="css/mypage.css">
 </head>
 <body>
-<hr>
-<input type="button" value="È¸¿øÁ¤º¸" onclick = "location.href='/deco/userInfo.deco'">
-<input type="button" value="³»°¡ ¾´ Âò¸ñ·Ï" onclick = "'">
-<input type="button" value="³»°¡ ¾´ ¸®ºä¸ñ·Ï" onclick = "'">
-<!-- 1:1 ¹®ÀÇ »©±â -->
-<button>°í°´¼¾ÅÍ</button><br>
+<%@ include file="../top.jsp" %>
+<section>
 
+<div class="menu-wrap">
+      <h1>ë§ˆì´í˜ì´ì§€</h1>
+      <ul class="munu-list">
+          <li><a href="userInfo.deco" class="btn-style">íšŒì›ì •ë³´</a></li>
+          <li><a href="reviewList.deco" class="btn-style">ë¦¬ë·°ëª©ë¡</a></li>
+          <li><a href="cafeDibsList.deco" class="btn-style">ì°œëª©ë¡</a></li>
+          <li><a href="" onclick = "deleteCmt()" class="btn-style">íšŒì›íƒˆí‡´</a></li>
+      </ul>
+  </div>
+</section>
+<%@ include file="../bottom.jsp" %>
 
-
-
+<script>
+function deleteCmt(){
+		const yn = confirm('ì•„ì´ë””ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?');
+		if(yn){
+			location.href='userInfoDelete.deco';
+		}else {
+			alert('ì•„ì´ë”” ì‚­ì œë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤.');
+		}
+	}
+</script>	
 </body>
 </html>
